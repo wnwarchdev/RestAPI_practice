@@ -1,4 +1,5 @@
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 
 
 const db = [
@@ -47,9 +48,23 @@ app.put('/testimonials/:id', (req, res) => {
         author: 'placeholderAuthor', 
         text: 'placeholderText'
       }
+    const object = db.filter(item => item.id == req.params.id);
+    db.splice(db.indexOf(object[0]), 1);
     db.push(payload);  
     res.json({message: 'OK, updated'});
   });
+
+  app.post('/testimonials', (req, res) => { 
+    const payload = {
+        id: uuidv4(),
+        author: 'placeholderAuthor', 
+        text: 'placeholderText'
+    };
+    db.push(payload);
+    res.json({ message: 'OK, posted' });
+});
+
+
 
   app.use((req, res) => {
     res.status(404).render('error');
