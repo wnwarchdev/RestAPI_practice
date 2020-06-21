@@ -28,10 +28,11 @@ router.route('/testimonials/:id').delete((req, res) => {
 
 // get modify by id
 router.route('/testimonials/:id').put((req, res) => {
+    const { author, text } = req.body
     const payload = {
         id: req.params.id, 
-        author: 'placeholderAuthor', 
-        text: 'placeholderText'
+        author: author,
+        text: text, 
       }
     const object = db.testimonials.filter(item => item.id == req.params.id);
     db.testimonials.splice(db.testimonials.indexOf(object[0]), 1);
@@ -41,10 +42,11 @@ router.route('/testimonials/:id').put((req, res) => {
 
 // post new
 router.route('/testimonials').post((req, res) => { 
+    const { author, text } = req.body
     const payload = {
         id: uuidv4(),
-        author: 'placeholderAuthor', 
-        text: 'placeholderText'
+        author: author,
+        text: text, 
     };
     db.testimonials.push(payload);
     res.json({ message: 'OK, posted' });

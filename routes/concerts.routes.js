@@ -23,9 +23,16 @@ router.route('/concerts/:id').delete((req, res) => {
 
 // get modify by id
 router.route('/concerts/:id').put((req, res) => {
+    const { performer, genre, price, day, image } = req.body
+
+    
     const payload = {
         id: req.params.id, 
-        performer: 'placeholderPerformer'
+        performer: performer,
+        genre: genre,
+        price: price,
+        day: day,
+        image: image 
       }
     const object = db.concerts.filter(item => item.id == req.params.id);
     db.concerts.splice(db.concerts.indexOf(object[0]), 1);
@@ -35,12 +42,17 @@ router.route('/concerts/:id').put((req, res) => {
 
 // post new
 router.route('/concerts').post((req, res) => { 
+    const { performer, genre, price, day, image } = req.body
     const payload = {
         id: uuidv4(),
-        performer: 'placeholderPerformer'
+        performer: performer,
+        genre: genre,
+        price: price,
+        day: day,
+        image: image 
     };
     db.concerts.push(payload);
-    res.json({ message: 'OK, posted' });
+    res.json({message: 'OK, posted'});
 });
 
 

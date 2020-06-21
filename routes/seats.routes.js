@@ -23,10 +23,13 @@ router.route('/seats/:id').delete((req, res) => {
 
 // get modify by id
 router.route('/seats/:id').put((req, res) => {
+    const { day, seat, client, email } = req.body
     const payload = {
         id: req.params.id, 
-        client: 'placeholderClient', 
-        seat: 'placeholderSeat'
+        day: day,
+        seat: seat,
+        client: client,
+        email: email, 
       }
     const object = db.seats.filter(item => item.id == req.params.id);
     db.seats.splice(db.seats.indexOf(object[0]), 1);
@@ -36,10 +39,13 @@ router.route('/seats/:id').put((req, res) => {
 
 // post new
 router.route('/seats').post((req, res) => { 
+    const { day, seat, client, email } = req.body
     const payload = {
         id: uuidv4(),
-        client: 'placeholderClient', 
-        seat: 'placeholderSeat'
+        day: day,
+        seat: seat,
+        client: client,
+        email: email, 
     };
     db.seats.push(payload);
     res.json({ message: 'OK, posted' });
