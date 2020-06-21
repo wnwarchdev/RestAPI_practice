@@ -11,13 +11,13 @@ router.route('/concerts').get((req, res) => {
 
 // get by id
 router.route('/concerts/:id').get((req, res) => {
-    res.json(db.concerts.filter(item => item.id == req.params.id));
+    res.json(db.concerts.find(item => item.id == req.params.id));
   });
 
 // delete by id
 router.route('/concerts/:id').delete((req, res) => {
-    const object = db.concerts.filter(item => item.id == req.params.id);
-    db.concerts.splice(db.concerts.indexOf(object[0]), 1);
+    const object = db.concerts.findIndex(item => item.id == req.params.id);
+    db.concerts.splice(object, 1);
     res.json({message: 'OK, deleted'});
   });
 
@@ -34,8 +34,8 @@ router.route('/concerts/:id').put((req, res) => {
         day: day,
         image: image 
       }
-    const object = db.concerts.filter(item => item.id == req.params.id);
-    db.concerts.splice(db.concerts.indexOf(object[0]), 1);
+    const object = db.concerts.findIndex(item => item.id == req.params.id);
+    db.concerts.splice(object, 1);
     db.concerts.push(payload);  
     res.json({message: 'OK, updated'});
   });

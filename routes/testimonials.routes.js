@@ -16,13 +16,13 @@ router.route('/testimonials/random').get((req, res) => {
 
 // get by id
 router.route('/testimonials/:id').get((req, res) => {
-    res.json(db.testimonials.filter(item => item.id == req.params.id));
+    res.json(db.testimonials.find(item => item.id == req.params.id));
   });
 
 // delete by id
 router.route('/testimonials/:id').delete((req, res) => {
-    const object = db.testimonials.filter(item => item.id == req.params.id);
-    db.testimonials.splice(db.testimonials.indexOf(object[0]), 1);
+    const object = db.testimonials.findIndex(item => item.id == req.params.id);
+    db.testimonials.splice(object, 1);
     res.json({message: 'OK, deleted'});
   });
 
@@ -34,8 +34,8 @@ router.route('/testimonials/:id').put((req, res) => {
         author: author,
         text: text, 
       }
-    const object = db.testimonials.filter(item => item.id == req.params.id);
-    db.testimonials.splice(db.testimonials.indexOf(object[0]), 1);
+    const object = db.testimonials.findIndex(item => item.id == req.params.id);
+    db.testimonials.splice(object, 1);
     db.testimonials.push(payload);  
     res.json({message: 'OK, updated'});
   });
