@@ -19,7 +19,7 @@ app.use('/api', concertsRoutes);
 
 //error
   app.use((req, res) => {
-    res.status(404).render('error');
+    res.status(404).send('<h3>page not found</h3>');
   })
 
 
