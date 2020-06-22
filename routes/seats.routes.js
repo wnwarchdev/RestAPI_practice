@@ -11,12 +11,12 @@ router.route('/seats').get((req, res) => {
 
 // get by id
 router.route('/seats/:id').get((req, res) => {
-    res.json(db.seats.find(item => item.id == req.params.id));
+    res.json(db.seats.find(item => item.id == req.params.id)); //dodaj warunek
   });
 
 // delete by id
 router.route('/seats/:id').delete((req, res) => {
-    const object = db.seats.findIndex(item => item.id == req.params.id);
+    const object = db.seats.findIndex(item => item.id == req.params.id); //index
     db.seats.splice(object, 1);
     res.json({message: 'OK, deleted'});
   });
@@ -31,8 +31,8 @@ router.route('/seats/:id').put((req, res) => {
         client: client,
         email: email, 
       }
-    const object = db.seats.findIndex(item => item.id == req.params.id);
-    db.seats.splice(object, 1);
+    const index = db.seats.findIndex(item => item.id == req.params.id);
+    db.seats.splice(index, 1); //payload
     db.seats.push(payload);  
     res.json({message: 'OK, updated'});
   });
