@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const socket = require('socket.io');
 
 const app = express();
 
@@ -33,6 +34,15 @@ app.get('*', (req, res) => {
   })
 
 
-  app.listen(process.env.PORT || 8000, () => {
-    console.log('Server is running on port: 8000');
+  const server = app.listen(process.env.PORT || 8000, () => {
+    console.log('Server is running...with websocket');
+  });
+
+
+  /// socket
+
+  const io = socket(server);
+
+  io.on('connection', () => {
+    console.log('New socket!')
   });
