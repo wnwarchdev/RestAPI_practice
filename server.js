@@ -5,10 +5,17 @@ const socket = require('socket.io');
 
 const app = express();
 
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, '/client/build')));
+
 
 
 //import routes
@@ -46,3 +53,4 @@ app.get('*', (req, res) => {
   io.on('connection', () => {
     console.log('New socket!')
   });
+

@@ -11,6 +11,9 @@ class SeatChooser extends React.Component {
     loadSeats()
     this.refresh = setInterval(() => loadSeats(), 2*60*1000);
     this.socket = io.connect(process.env.ENV_NODE || 'http://localhost:8000');
+    this.socket.on('seatsUpdated', () => {
+      console.log('New seat, update!')
+    });
   }
 
   componentWillUnmount () {

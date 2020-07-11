@@ -48,6 +48,7 @@ router.route('/seats').post((req, res) => {
         email: email, 
     };
     db.seats.push(payload);
+    req.io.emit('seatsUpdated', db.seats);
     res.json({ message: 'OK, posted' });
 });
 
@@ -66,10 +67,12 @@ router.route('/seats').post((req, res) => {
       email: email, 
   };
 
+
   if (db.seats.some(item => (item.seat === payload.seat || item.day === payload.day))) {
     res.json({message: 'The slot is already taken...'});
   } else {
     db.seats.push(payload);
+    req.io.emit('seatsUpdated', db.seats);
     res.json({ message: 'OK, posted' });
   }
 
