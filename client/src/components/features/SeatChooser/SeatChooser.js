@@ -7,12 +7,12 @@ import './SeatChooser.scss';
 class SeatChooser extends React.Component {
   
   componentDidMount() {
-    const { loadSeats } = this.props;
+    const { loadSeats, loadSeatsSocket } = this.props; //loadSeats
     loadSeats()
-    this.refresh = setInterval(() => loadSeats(), 2*60*1000);
+    //this.refresh = setInterval(() => loadSeats(), 2*60*1000);
     this.socket = io.connect(process.env.ENV_NODE || 'http://localhost:8000');
-    this.socket.on('seatsUpdated', () => {
-      console.log('New seat, update!')
+    this.socket.on('seatsUpdated', (seats) => {
+      loadSeatsSocket(seats)
     });
   }
 
