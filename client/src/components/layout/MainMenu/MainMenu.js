@@ -25,7 +25,7 @@ class MainMenu extends React.Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">New Wave Festival</NavbarBrand>
+          <NavbarBrand href="/">Express Festival</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto align-items-center" navbar>
