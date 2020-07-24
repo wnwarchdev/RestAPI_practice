@@ -9,9 +9,9 @@ class SeatChooser extends React.Component {
   
   componentDidMount() {
     const { loadSeats, loadSeatsSocket } = this.props; //loadSeats
-    loadSeats()
     //this.refresh = setInterval(() => loadSeats(), 2*60*1000);
     this.socket = io.connect(process.env.ENV_NODE || 'http://localhost:8000');
+    loadSeats()
     this.socket.on('seatsUpdated', (seats) => {
       loadSeatsSocket(seats)
     });
