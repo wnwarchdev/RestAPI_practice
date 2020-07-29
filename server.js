@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const socket = require('socket.io');
+//const socket = require('socket.io');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -43,11 +43,7 @@ app.get('*', (req, res) => {
   })
 
 
-  const server = app.listen(process.env.PORT || 8000, () => {
-    console.log('Server is running...with websocket');
-  });
-
-
+///mongoose
   mongoose.connect('mongodb://localhost:27017/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
   const db = mongoose.connection;
 
@@ -57,7 +53,15 @@ app.get('*', (req, res) => {
   });
   db.on('error', err => console.log('Error ' + err));
 
+
+
+
+
   /// socket
+/*
+  const server = app.listen(process.env.PORT || 8000, () => {
+    console.log('Server is running...with websocket');
+  });
 
   const io = socket(server);
 
@@ -65,3 +69,4 @@ app.get('*', (req, res) => {
     console.log('New socket!')
   });
 
+*/
