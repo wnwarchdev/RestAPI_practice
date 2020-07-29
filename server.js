@@ -44,7 +44,7 @@ app.get('*', (req, res) => {
 
 
 ///mongoose
-  mongoose.connect('mongodb://localhost:27017/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
+  mongoose.connect('mongodb+srv://wnw:kodilla1@cluster0.cfcxb.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
   const db = mongoose.connection;
 
 
