@@ -54,6 +54,9 @@ exports.post = async (req, res) => {
     const { day, seat, client, email } = req.body;
     const newSeat = new Seat({ day, seat, client, email });
     await newSeat.save();
+    newDB = await Seat.find()
+    //console.log(newDB);
+    req.io.emit('seatsUpdated', newDB);
     res.json({ message: 'OK' });
 
   } catch(err) {
