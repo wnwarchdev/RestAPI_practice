@@ -44,8 +44,8 @@ app.get('*', (req, res) => {
 
 
 ///mongoose
-  mongoose.connect('mongodb+srv://${process.env.srvUserName}:${process.env.srvPassword}@cluster0.cfcxb.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
-  const db = mongoose.connection;
+mongoose.connect('mongodb+srv://wnw:kodilla1@cluster0.cfcxb.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
 
 
   db.once('open', () => {
