@@ -2,7 +2,7 @@
   "scripts": {
     "build": "cd client && yarn install && yarn build",
     "start": "nodemon server.js",
-    "test": "set NODE_ENV=production && mocha \"./{,!(node_modules)/**/}*.test.js\"",
+    "test": "set NODE_ENV=production && mocha .\"/tests/api/concerts/*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- yarn test"
   },
   "dependencies": {

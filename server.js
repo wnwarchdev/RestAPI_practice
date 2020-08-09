@@ -65,3 +65,5 @@ app.get('*', (req, res) => {
   io.on('connection', () => {
     console.log('New socket!')
   });
+
+  module.exports = server
