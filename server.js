@@ -46,7 +46,7 @@ app.get('*', (req, res) => {
 
 
 ///mongoose
-const dbURI = (process.env.NODE_ENV === 'production' ? 'mongodb+srv://${process.env.srvUserName}:${process.env.srvPassword}@cluster0.cfcxb.mongodb.net/NewWaveDB?retryWrites=true&w=majority': 'mongodb://localhost:27017/NewWaveDB');
+const dbURI = (process.env.NODE_ENV === 'production' ? 'mongodb+srv://wnw:kodilla1@cluster0.cfcxb.mongodb.net/NewWaveDB?retryWrites=true&w=majority': 'mongodb://localhost:27017/NewWaveDB');
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
